@@ -1,5 +1,5 @@
 <?php
-class DataBase
+class Database
 {
     private static $instace = null;
     private $conn;
@@ -8,14 +8,12 @@ class DataBase
     private $user = 'root';
     private $pass = '';
 
-
-
     private function __construct()
     {
-        try{
+        try {
             $this->conn = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pass);
         } catch (PDOException $e) {
-            echo 'Connection failed:' . $e->getMessage();
+            echo 'Connection failed: ' . $e->getMessage();
         }
     }
 
@@ -25,16 +23,13 @@ class DataBase
         {
             self::$instace = new Database();
         }
+
         return self::$instace;
     }
-
 
     public function getConnection() 
     {
         return $this->conn;    
     }
-
 }
-
-
 ?>

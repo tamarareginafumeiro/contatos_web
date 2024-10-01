@@ -15,6 +15,11 @@ class Contato
         $this->email = $email;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getNome()
     {
         return $this->nome;
@@ -25,20 +30,30 @@ class Contato
         return $this->telefone;
     }
 
-
     public function getEmail()
     {
         return $this->email;
     }
 
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    public function setTelefone($telefone)
+    {
+        $this->telefone = $telefone;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
 
     public function __toString()
     {
-        return "Nome: {$this->nome}, Telefone: {$this->telefone}, Email: {$this->email},";
+        return "Nome: {$this->nome}, telefone: {$this->telefone}, email: {$this->email}";
     }
-        
-    }
-
-
+}
 
 ?>
