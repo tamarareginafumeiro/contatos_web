@@ -1,5 +1,15 @@
 <?php
 
+session_start();
+
+// Verificar se o usuário está autenticado
+// TODO: Buscar token do usuário no banco e verificar se é iugal ao passado
+if(!isset($_SESSION['token']))
+{
+    header('Location: auth.php');
+    exit();
+}
+
 require_once '../dao/ContatoDAO.php';
 
 $contatoDAO = new ContatoDAO();
@@ -9,6 +19,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])){
     $contato = $contatoDAO->getById($_GET['id']);
 }
 
+
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(isset($_POST['save'])) {
@@ -16,8 +27,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         {
             $contato = $contatoDAO->getById($_POST['id']);
             $contato->setNome($_POST['nome']);
-            $contato->setNome($_POST['telefone']);
-            $contato->setNome($_POST['email']);
+            $contato->setTelefone($_POST['telefone']);
+            $contato->setEmail($_POST['email']);
 
             $contatoDAO->update($contato);
         } else {
@@ -34,7 +45,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
-
 ?>
 
 
